@@ -14,6 +14,15 @@ public class SignupPage {
         PageFactory.initElements(driver, this); // initialize all @FindBy elements
     }
 
+    String firstName="Nikkey";
+    String institueName="Kerala academy of pharmacy";
+    String email="nikkey.yadav+5000@benthonlabs.com";
+    String lastName="Yadavv";
+    String mobileNumber="9517179795";
+    String emailOtp="123456";
+    String mobleOtp="345679";
+
+
     @FindBy(xpath = "//span[text()='Institute' ]")
     public WebElement instituteTab;
 
@@ -24,16 +33,16 @@ public class SignupPage {
     public WebElement instituteName;
 
     @FindBy(id = "firstName")
-    public WebElement firstName;
+    public WebElement firstNameLoc;
 
     @FindBy(id = "lastName")
-    public WebElement lastName;
+    public WebElement lastNameLoc;
 
     @FindBy(id = "workEmail")
     public WebElement workEmail;
 
     @FindBy(id = "mobileNumber")
-    public WebElement mobileNumber;
+    public WebElement mobileNumberLoc;
 
     @FindBy (id = "termsAgreed")
     public WebElement termsAgreed ;
@@ -43,36 +52,53 @@ public class SignupPage {
 
     @FindBy (xpath = " //input[@placeholder='Search institutes...']")
     public WebElement inituteSearch;
-    @FindBy (xpath = "//div[contains(text(),'Kerala academy of pharmacy')]")
+
+    @FindBy (xpath = "(//*[normalize-space(text())='Kerala academy of pharmacy'])[1]")
     public WebElement institutedropdown;
 
+    @FindBy (id = "mobileNumber")
+    public WebElement enterMobileNumber;
 
+    @FindBy (id = "emailOtp")
+    public WebElement enterOtpForEmail;
+
+    @FindBy (id = "mobileOtp")
+    public WebElement enterOtpForMobile;
+
+    @FindBy (xpath = "//button[text()= 'Verify']")
+    public WebElement verifyButton;
 
 
     public void clickOn(WebElement element){
     element.click();
 }
 
-public void write(WebElement element, String text){
+    public void write(WebElement element, String text){
     element.sendKeys(text);
 }
 
 public void fillInstituteDetails() throws InterruptedException {
     clickOn(instituteTab);
     clickOn(instituteName);
-    inituteSearch.sendKeys("Kerala academy of pharmacy");
+    inituteSearch.sendKeys(institueName);
     Thread.sleep(2000);
-institutedropdown.click();
-Thread.sleep(50000);
-    write(instituteName,"name");
-    write(firstName,"Nikkey");
-    write(lastName,"Yadav");
-    write(workEmail,"nikkey.yadav+5000@benthonlabs.com");
+    inituteSearch.sendKeys(Keys.TAB);
+    institutedropdown.click();
+    write(firstNameLoc,firstName);
+    write(lastNameLoc,lastName);
+    write(workEmail,email);
+    write(enterMobileNumber,mobileNumber);
     clickOn(termsAgreed);
     clickOn(submitButton);
 
 
 }
+
+ public void verifyYourAccount(){
+        write(enterOtpForEmail,emailOtp);
+        write(enterMobileNumber,mobleOtp);
+        clickOn(verifyButton);
+    }
 
 
 }

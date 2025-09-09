@@ -13,12 +13,13 @@ public class BaseTest {
 
     @BeforeClass
     public static void setup(){
+        driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
     }
 
-//    @AfterTest
-//    public static void teardown(){
-//        driver.quit();
-//    }
+    @AfterTest
+    public static void teardown(){
+        driver.quit();
+    }
 
 }

@@ -10,14 +10,21 @@ public class SignupPageTest extends BaseTest {
     static SoftAssert softAssert = new SoftAssert();
 
     @Test
-    public static void verifyNavigationToSignupPage() throws InterruptedException {
-        SignupPage signupPage=new SignupPage(driver);
+    public static void verifyNavigationToSignupPage()  {
        LandingPage landingPage = new LandingPage(driver);
        landingPage.navigateToLandingPage();
        landingPage.clickOnSignUpButton();
-       softAssert.assertTrue(landingPage.getWelcomeText.isDisplayed());
-       signupPage.fillInstituteDetails();
+       softAssert.assertTrue(landingPage.getWelcomeText.isDisplayed());}
 
+
+
+
+    @Test
+    public static void verifyValidDetailsSignUp() throws InterruptedException {
+        SignupPage signupPage=new SignupPage(driver);
+        signupPage.fillInstituteDetails();
+        Thread.sleep(1000);
+        signupPage.verifyYourAccount();
     }
 
 }
