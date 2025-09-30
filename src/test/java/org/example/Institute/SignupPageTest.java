@@ -1,8 +1,8 @@
-package org.example;
+package org.example.Institute;
 
-import Pages.LandingPage;
-import Pages.SignupPage;
-import org.testng.Assert;
+import Pages.Institute.LandingPage;
+import Pages.Institute.SignupPage;
+import org.example.BaseTest;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
@@ -17,15 +17,14 @@ public class SignupPageTest extends BaseTest {
        softAssert.assertTrue(landingPage.getWelcomeText.isDisplayed());}
 
 
-
-
     @Test
     public static void verifyValidDetailsSignUp() throws InterruptedException {
         SignupPage signupPage=new SignupPage(driver);
         signupPage.fillInstituteDetails();
         Thread.sleep(1000);
         signupPage.verifyYourAccount();
-    }
+        signupPage.setPassword();
 
+    }
 }
 

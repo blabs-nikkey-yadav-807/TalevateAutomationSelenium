@@ -1,7 +1,7 @@
-package org.example;
+package org.example.Student;
 
-import Pages.LandingPage;
-import net.bytebuddy.build.Plugin;
+import Pages.Student.LandingPage;
+import org.example.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;

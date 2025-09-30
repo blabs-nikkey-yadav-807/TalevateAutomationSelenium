@@ -1,5 +1,6 @@
-package Pages;
+package Pages.Organization;
 
+import Utilts.Waits;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,28 +10,32 @@ import org.openqa.selenium.support.PageFactory;
 public class SignupPage {
 
     private WebDriver driver;
+    private final Waits wait;
     public SignupPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this); // initialize all @FindBy elements
+        wait = new Waits(this.driver);
     }
 
-    String firstName="Nikkey";
-    String institueName="Kerala academy of pharmacy";
-    String email="nikkey.yadav+5000@benthonlabs.com";
-    String lastName="Yadavv";
+    String firstName="Test";
+    String organizationName="Niiikkkeeyyyyaddaaav.Ldt";
+    String email="nikkey.yadav+67700@benthonlabs.com";
+    String lastName="Nikkeyy";
     String mobileNumber="9517179795";
     String emailOtp="123456";
     String mobleOtp="345679";
+    String password="Nikkey@33";
+    String confirmPassword="Nikkey@33";
 
-
-    @FindBy(xpath = "//span[text()='Institute' ]")
-    public WebElement instituteTab;
+//
+//    @FindBy(xpath = "//span[text()='Institute' ]")
+//    public WebElement organizationab;
 
     @FindBy(xpath = "//span[text()='Organization' ]")
-    public WebElement OrganizationTab;
+    public WebElement organizationTab;
 
-    @FindBy(xpath = "//span[text()='Enter Institute name' ]")
-    public WebElement instituteName;
+    @FindBy(id = "corporateName")
+    public WebElement corporateName;
 
     @FindBy(id = "firstName")
     public WebElement firstNameLoc;
@@ -50,12 +55,6 @@ public class SignupPage {
     @FindBy (xpath = "//button[text()='Create an account' ]")
     public WebElement submitButton;
 
-    @FindBy (xpath = " //input[@placeholder='Search institutes...']")
-    public WebElement inituteSearch;
-
-    @FindBy (xpath = "(//*[normalize-space(text())='Kerala academy of pharmacy'])[1]")
-    public WebElement institutedropdown;
-
     @FindBy (id = "mobileNumber")
     public WebElement enterMobileNumber;
 
@@ -65,8 +64,20 @@ public class SignupPage {
     @FindBy (id = "mobileOtp")
     public WebElement enterOtpForMobile;
 
-    @FindBy (xpath = "//button[text()= 'Verify']")
+    @FindBy (xpath = "//button[text()='Verify Account']")
+    public WebElement verifyAccountButton;
+
+    @FindBy (xpath = "//button[text()='Verify']")
     public WebElement verifyButton;
+
+    @FindBy (id = "password")
+    public WebElement passwordLoc;
+
+    @FindBy (id = "confirmPassword")
+    public WebElement confirmPasswordLoc;
+
+    @FindBy (xpath= "//button[text()= 'Set Password']")
+    public WebElement setPassword;
 
 
     public void clickOn(WebElement element){
@@ -77,13 +88,9 @@ public class SignupPage {
     element.sendKeys(text);
 }
 
-public void fillInstituteDetails() throws InterruptedException {
-    clickOn(instituteTab);
-    clickOn(instituteName);
-    inituteSearch.sendKeys(institueName);
-    Thread.sleep(2000);
-    inituteSearch.sendKeys(Keys.TAB);
-    institutedropdown.click();
+public void fillOrganizationDetails() throws InterruptedException {
+    clickOn(organizationTab);
+    write(corporateName,organizationName);
     write(firstNameLoc,firstName);
     write(lastNameLoc,lastName);
     write(workEmail,email);
@@ -95,10 +102,21 @@ public void fillInstituteDetails() throws InterruptedException {
 }
 
  public void verifyYourAccount(){
+        wait .waitForElementTobeVisible(driver,verifyAccountButton);
+        clickOn(verifyAccountButton);
         write(enterOtpForEmail,emailOtp);
-        write(enterMobileNumber,mobleOtp);
+        write(enterOtpForMobile,mobleOtp);
         clickOn(verifyButton);
     }
 
+    public void setPassword(){
+        wait.waitForElementTobeVisible(driver,setPassword);
+        write(passwordLoc,password);
+        write(confirmPasswordLoc,confirmPassword);
+        clickOn(setPassword);
 
-}
+    }
+
+
+    }
+
