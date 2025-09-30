@@ -1,6 +1,5 @@
-package Pages;
+package Pages.Organization;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -52,5 +51,6 @@ public boolean validateLoginButton() throws InterruptedException {
         Thread.sleep(2000);
         return getWelcomeText.isDisplayed();
     }
+
 
 }

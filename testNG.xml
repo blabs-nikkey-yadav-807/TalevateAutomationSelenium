@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="AutomationSuite"  parallel="tests" thread-count="3">
+<test name="InstituteTests">
+    <classes>
+        <class name="org.example.Institute.LandingPageTest"/>
+        <class name="org.example.Institute.LoginPageTest"/>
+        <class name="org.example.Institute.UploadStudentTest"/>
+    </classes>
+</test>
+<test name="JobSharingTests">
+    <classes>
+        <class name="org.example.Organization.LoginPageTest"/>
+        <class name="org.example.Organization.CreateJobTest"/>
+        <class name="org.example.Organization.JobSharingTest"/>
+        <class name="org.example.Institute.LoginPageTest"/>
+        <class name="org.example.Institute.JobListingsTest"/>
+    </classes>
+</test>
+
+    <test name="ConnectTests">
+        <classes>
+            <class name="org.example.Organization.LoginPageTest"/>
+            <class name="org.example.Organization.ConnectTest"/>
+            <class name="org.example.Institute.LoginPageTest"/>
+            <class name="org.example.Institute.ConnectTest"/>
+        </classes>
+    </test>
+</suite>
